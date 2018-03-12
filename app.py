@@ -1,5 +1,6 @@
 import os,sys
 from flask import Flask,request
+from utils import wit_response,get_news_elements
 from pymessenger import Bot
 
 app= Flask(__name__)
@@ -38,9 +39,22 @@ def webhook():
 						messaging_text='no text'
 
 					#Echo		
-					response=messaging_text
+					# response=None
 
-					bot.send_text_message(sender_id,response)
+					# entity,value=wit_response(messaging_text)
+					# if entity=='newstypes':
+					# 	response="Ok,I will send you {} news".format(str(value))
+					# elif entity=='location':
+					# 	response="Ok.So you live in {0}.I will send you top headlines from {0}".format(str(value))
+
+					# if response==None:
+					# 	response="Sorry,I am not getting what you want to know"
+						
+
+					categories=wit_response(messaging_text)
+					elements=get_news_elements(categories)
+
+					bot.send_text_message(sender_id,elements)
 	return "ok",200
 
 def log(message):
