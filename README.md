@@ -1,4 +1,4 @@
  # NEWS ChatBot
-   A bot to share news on any thing likes sports,crimes etc.
+   A bot to tell news on any thing likes sports,crimes etc.
 
 
